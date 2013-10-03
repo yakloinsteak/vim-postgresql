@@ -1,8 +1,6 @@
-# Vim Postgresql and postgis plugin
+# Vim Postgresql and PostGIS plugin
 
 ## Description
-
-This area left blank until first release.
 
 ## How to Install
 
