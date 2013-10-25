@@ -1,6 +1,4 @@
-" Vim syntax file
 " Language: SQL, PGSQL (postgres 9.1)
-" Last Change: 2013 9/26
 " Maintainer: Todd Blackman
 " Based on the work of Paul Moore <pf_moore AT yahoo.co.uk>
 " and Grégoire Hubert <greg DOT hubert AT gmail DOT com>
@@ -17,7 +15,7 @@ syn case ignore
 
 " postgresql reserved words, defined as keywords.
 
-syn keyword sqlSpecial  false null true
+syn keyword sqlSpecial false null true
 
 syn keyword sqlKeyword all analyse analyze any array as asc asymmetric
 syn keyword sqlKeyword authorization binary both by case cast check collate
@@ -99,7 +97,7 @@ syn keyword sqlFunc  current_setting
 
 " PostGIS
 syn keyword gisFunctions addgeometrycolumn updateGeometrySRID
-syn keyword gisManagementFunctions postgis_full_version
+syn keyword gisManagement Postgis_Full_Version Populate_Geometry_Columns
 syn keyword gisGetters ST_AsText ST_GeometryType ST_NDims ST_SRID ST_AsBinary ST_AsEWKB ST_AsEWKT ST_AsGeoJSON ST_AsGML ST_AsKML ST_AsSVG ST_AsText
 syn keyword gisSetters ST_SetSRID
 syn keyword gisPoint ST_X ST_Y
@@ -107,12 +105,15 @@ syn keyword gisLineString ST_Length ST_StartPoint ST_EndPoint ST_NPoints
 syn keyword gisPolygon ST_Area ST_NRings ST_ExteriorRing ST_InteriorRingN ST_Perimeter
 syn keyword gisCollection ST_NumGeometries ST_GeometryN
 syn keyword gisConvert ST_GeomFromGML ST_GeomFromKML ST_GeomFromText ST_GeomFromWKB ST_Transform ST_GeographyFromText Geography
-syn keyword gisCompare ST_Contains ST_Distance ST_DWithin ST_GeomFromText ST_Intersects ST_Length ST_Touches ST_Within
-syn keyword gisGeography ST_AsText ST_GeographyFromText ST_AsBinary ST_GeogFromWKB ST_AsSVG ST_AsGML ST_AsKML ST_AsGeoJson ST_Distance ST_DWithin ST_Area ST_Length ST_Covers ST_CoveredBy ST_Intersects ST_Buffer ST_Intersection
+syn keyword gisCompare ST_Contains ST_Distance ST_DWithin ST_GeomFromText ST_Intersects ST_Length ST_Touches ST_Within ST_IsValid ST_IsValidReason ST_OrderingEquals ST_Equals ST_Crosses
+syn keyword gisGeography ST_AsText ST_GeographyFromText ST_AsBinary ST_GeogFromWKB ST_AsSVG ST_AsGML ST_AsKML ST_AsGeoJson ST_Distance ST_DWithin ST_Area ST_Length ST_Covers ST_CoveredBy ST_Intersects
+syn keyword gisConstruct ST_Centroid ST_PointOnSurface ST_Buffer ST_Intersection ST_Union
+syn keyword gisMisc ST_Line_Locate_Point ST_Line_Interpolate_Point ST_Line_Substring ST_Locate_Along_Measure ST_Locate_Between_Measures ST_Relate ST_GeoHash
+syn keyword gis3D ST_3DClosestPoint ST_3DDistance ST_3DDWithin ST_3DDFullyWithin ST_3DIntersects ST_3DLongestLine ST_3DMaxDistance ST_3DShortestLine ST_Expand
 
 " Strings and characters:
-syn region sqlString    start=+"+  skip=+\\\\\|\\"+  end=+"+
-syn region sqlString    start=+'+  skip=+\\\\\|\\'+  end=+'+
+syn region sqlString start=+"+  skip=+\\\\\|\\"+  end=+"+
+syn region sqlString start=+'+  skip=+\\\\\|\\'+  end=+'+
 
 " Numbers:
 syn match sqlNumber    "-\=\<\d*\.\=[0-9_]\>"
@@ -152,7 +153,7 @@ if version >= 508 || !exists("did_sql_syn_inits")
 
   " PostGIS
   HiLink gisFunctions Function
-  HiLink gisManagementFunctions Function
+  HiLink gisManagement Function
   HiLink gisGetters Function
   HiLink gisSetters Function
   HiLink gisPoint Function
@@ -162,6 +163,9 @@ if version >= 508 || !exists("did_sql_syn_inits")
   HiLink gisConvert Function
   HiLink gisCompare Function
   HiLink gisGeography Function
+  HiLink gisConstruct Function
+  HiLink gisMisc Function
+  HiLink gis3D Function
 
   delcommand HiLink
 endif

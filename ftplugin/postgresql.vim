@@ -1,8 +1,11 @@
-setlocal dictionary+=$HOME/.vim/bundle/postgresql/dictionary.txt
+" Only do this when not done yet for this buffer
+if exists("b:did_ps_ftplugin")
+  finish
+endif
 
-" postgresql thesaurus is the first thesaurus
-let g:thes = &thesaurus
-setlocal thesaurus=$HOME/.vim/bundle/postgresql/thesaurus.txt
-exe 'setlocal thesaurus+=' . g:thes
+let b:did_ps_ftplugin = 1
+let s:vpg_path = resolve(expand('<sfile>:p:h:h'))
 
-setlocal omnifunc=syntaxcomplete#Complete
+call postgresql#Init(s:vpg_path)
+call postgresql#SetDictionary()
+call postgresql#SetThesaurus()
