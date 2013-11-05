@@ -1,4 +1,4 @@
-au BufRead,BufNewFile *.psql,psql.edit.*.sql set ft=sql.postgresql
+au BufRead,BufNewFile *.psql,psql.edit.* set ft=sql.postgresql
 
 " TODO: detect postgresql via rails database.yml or if postgresql is running
 " and mysql is not. Not the best heuristic, but it's a start.
